@@ -33,7 +33,7 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Product list items will be added here dynamically -->
+            
         </tbody>
         <tfoot>
             <tr>
@@ -70,7 +70,7 @@
             GrossPrice += accessoryPrice * amount;
             $("#GrossPrice").text(GrossPrice.toFixed(2));
 
-            var vatRate = 0.07; // 7% VAT rate
+            var vatRate = 0.07; 
             var vatAmount = GrossPrice * vatRate;
             var netAmount = GrossPrice + vatAmount;
 
