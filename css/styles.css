@@ -1,0 +1,79 @@
+body {
+    background-color: #c0dadd;
+}
+
+table {
+    width: 100%;
+    background-color: #7178ff;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+table tr:nth-child(even) {
+    background-color: #c6e1fa;
+}
+
+table tr:nth-child(odd) {
+    background-color: #ffffffdf;
+}
+
+table tfoot {
+    font-weight: bold;
+}
+
+th {
+    background-color: rgb(184, 212, 231);
+    color: darkblue;
+    border: solid #000000 1px;
+}
+
+td {
+    vertical-align: top;
+}
+
+#sub-total {
+    border-top: solid #000 1px;
+}
+
+#bottom-line {
+    border-bottom: solid #000 1px;
+}
+
+.data {
+    border-left: solid #000000 1px;
+    border-right: solid #000000 1px;
+}
+
+.data2 {
+    border-right: solid #000000 1px;
+}
+
+p.i {
+    font-style: italic;
+}
+
+.r {
+    text-align: right;
+}
+
+.cen {
+    text-align: center;
+}
+
+.center {
+    margin: auto;
+}
+
+.colo {
+    font-weight: bold;
+    color: darkblue;
+}
+
+.thick {
+    font-weight: bold;
+}
+
+.tab { 
+    display: inline-block; 
+    margin-left: 40px; 
+}

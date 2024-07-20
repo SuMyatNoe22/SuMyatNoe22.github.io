@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Car Accessory Shop</title>
+    <meta name="description" content="Company quotation">
+    <meta name="author" content="SitePoint">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <h2>Car Accessory Shop</h2>
+                <p>
+                    Bangsaothong
+                    <br>Samutrprakarn
+                    <br>THAILAND
+                    <br>30000
+                    <br>
+                    <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>: 12345678
+                    <br>
+                    <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>: 12345678
+                </p>
+            </div>
+            <div class="col-sm-6"></div>
+            <div class="col-sm-3 text-center">
+                <h1>QUOTATION</h1>
+                <img src="img/shopPic.webp" style="width:100px;height:100px;">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3>Customer:</h3>
+                <b>SU MYAT NOE</b><br>
+            </div>
+            <div class="col-sm-4">
+                <h3>Ship to:</h3>
+                <b>SU MYAT NOE</b><br>
+                Tonson Apartment<br>
+                Bangbo<br>
+                Samut Prakan
+            </div>
+            <div class="col-sm-4">
+                <h4 id="quotationDate">17/07/2024</h4>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#accessoryModal">
+        Add Accessory
+    </button>
+
+    <table class="table table-striped table-bordered table-condensed" id="quotationTable">
+        <thead>
+            <tr>
+                <th>Quantity</th>
+                <th>Accessory</th>
+                <th>Unit Price</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Gross Price</td>
+                <td colspan="1" class="text-right" id="GrossPrice">0.00</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3" class="text-right">VAT (7%)</td>
+                <td colspan="1" class="text-right" id="vat">0.00</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3" class="text-right">Total Amount</td>
+                <td colspan="1" class="text-right" id="total">0.00</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <br>
+
+    <p class="cen">
+        <b>Make all checks payable to:</b>
+        <br><i>Your company name here</i>
+        <br><b>If you have any question concerning this invoice, call:</b>
+        <br>
+        <br><b>THANK YOU FOR YOUR BUSINESS</b>
+    </p>
+
+    <footer>SU MYAT NOE</footer>
+
+    <!-- Add Accessory Modal -->
+    <div class="modal fade" id="accessoryModal" tabindex="-1" role="dialog" aria-labelledby="accessoryModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="accessoryModalLabel">Add Accessory</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="accessoryForm">
+                        <label for="accessory">Select an accessory:</label>
+                        <select id="accessory" class="form-control">
+                            <option value="100">Car Cover</option>
+                            <option value="200">Floor Mats</option>
+                            <option value="30">Seat Covers</option>
+                            <option value="40">Phone Holder</option>
+                            <option value="200">Car Cushion</option>
+                            <option value="100">Dashboard Camera</option>
+                        </select>
+                        <br>
+                        <label for="amount">Amount:</label>
+                        <input type="number" id="amount" min="1" value="1" class="form-control">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addAccessory()">Save Accessory</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+    <script>
+        var grossPrice = 0;
+
+        function addAccessory() {
+            var accessoryOption = $("#accessory option:selected");
+            var accessoryName = accessoryOption.text();
+            var accessoryPrice = parseFloat(accessoryOption.val());
+            var amount = parseInt($("#amount").val());
+
+            var newRow = $("<tr>");
+            newRow.append($("<td>").text(amount));
+            newRow.append($("<td>").text(accessoryName));
+            newRow.append($("<td>").text(accessoryPrice.toFixed(2)));
+            newRow.append($("<td>").text((accessoryPrice * amount).toFixed(2)));
+            var deleteButton = $("<button>").text("Delete").addClass("btn btn-danger").on("click", function() {
+                var row = $(this).closest("tr");
+                var price = parseFloat(row.find("td:eq(3)").text());
+                grossPrice -= price;
+                updatePrices();
+                row.remove();
+            });
+            newRow.append($("<td>").append(deleteButton));
+
+            $("#quotationTable tbody").append(newRow);
+
+            grossPrice += accessoryPrice * amount;
+            updatePrices();
+            $("#accessoryModal").modal("hide");
+        }
+
+        function updatePrices() {
+            $("#GrossPrice").text(grossPrice.toFixed(2));
+
+            var vatRate = 0.07; 
+            var vatAmount = grossPrice * vatRate;
+            var totalAmount = grossPrice + vatAmount;
+
+            $("#vat").text(vatAmount.toFixed(2));
+            $("#total").text(totalAmount.toFixed(2));
+        }
+
+        $(document).ready(function() {
+            $("#accessoryModal").on("shown.bs.modal", function () {
+                $("#amount").val(1);
+            });
+        });
+    </script>
+</body>
+
+</html>
